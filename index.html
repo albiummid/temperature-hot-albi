@@ -38,13 +38,12 @@
 
     <script>
         document.getElementById("search-city").addEventListener("click",function(){
-            let inputCity = document.getElementById("input-city").value;
-            getWeather(inputCity);
+            getWeather();
             inputCity = document.getElementById("input-city").value = ""
         })
-        function getWeather(cityName){
-            const link =  "http://api.openweathermap.org/data/2.5/weather?q="+cityName +"&units=metric&appid=08d2aab4fa37faf712b2e914cbe92b0d";
-            fetch(link)
+        function getWeather(){
+            const cityName = document.getElementById("input-city").value;
+            fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=08d2aab4fa37faf712b2e914cbe92b0d`)
         .then(res => res.json())
         .then(data => {
             const weatherInfo = data.main;
