@@ -43,7 +43,7 @@
         })
         function getWeather(){
             const cityName = document.getElementById("input-city").value;
-            fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=08d2aab4fa37faf712b2e914cbe92b0d`)
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=08d2aab4fa37faf712b2e914cbe92b0d`)
         .then(res => res.json())
         .then(data => {
             const weatherInfo = data.main;
@@ -51,6 +51,9 @@
             const city = data.name;
             document.getElementById("city-name").innerText = city;
             document.getElementById("status").innerText = data.weather[0].main;
+        })
+        .catch(error =>{
+            console.log("error,please try again");
         })
         }
     </script>
