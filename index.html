@@ -44,15 +44,15 @@
             inputCity = document.getElementById("input-city").value = ""
         })
         function getWeather(cityName){
-            const link = "http://api.weatherstack.com/forecast?access_key=1631c04572647c969ce86b621e551b0c&query=" + cityName;
+            const link =  "http://api.openweathermap.org/data/2.5/weather?q="+cityName +"&units=metric&appid=08d2aab4fa37faf712b2e914cbe92b0d";
             fetch(link)
         .then(res => res.json())
         .then(data => {
-            const weatherInfo = data.current;
-            document.getElementById("temperature").innerText = weatherInfo.temperature;
-            const city = data.location.name;
+            const weatherInfo = data.main;
+            document.getElementById("temperature").innerText = weatherInfo.temp;
+            const city = data.name;
             document.getElementById("city-name").innerText = city;
-            document.getElementById("status").innerText = weatherInfo.weather_descriptions[0];
+            document.getElementById("status").innerText = data.weather[0].main;
         })
         }
     </script>
