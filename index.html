@@ -29,7 +29,7 @@
             </div>
         </form>
         <div class="weather-status text-white text-center">
-            <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+            <img id="status-icon" src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
             <h1 id="city-name">Dhaka</h1>
             <h3><span id="temperature">38.06</span>&deg;C</h3>
             <h1 id="status" class="lead">Clouds</h1>
@@ -46,11 +46,15 @@
             fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=08d2aab4fa37faf712b2e914cbe92b0d`)
         .then(res => res.json())
         .then(data => {
+            const d = data;
+            console.log(d);
             const weatherInfo = data.main;
             document.getElementById("temperature").innerText = weatherInfo.temp;
             const city = data.name;
             document.getElementById("city-name").innerText = city;
             document.getElementById("status").innerText = data.weather[0].main;
+            const weatherIconName = data.weather[0].icon;
+            document.getElementById("status-icon").src =`http://openweathermap.org/img/wn/${weatherIconName}@2x.png`
         })
         .catch(error =>{
             console.log("error,please try again");
